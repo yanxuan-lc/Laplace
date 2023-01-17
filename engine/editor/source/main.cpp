@@ -1,17 +1,24 @@
-#define IMGUI_IMPL_OPENGL_LOADER_GL3W
-
-#include <GLFW/glfw3.h>
+#include <cstdlib>
 #include <cstdio>
+#include <GLFW/glfw3.h>
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include "editor/include/editor.h"
 
 static void glfw_error_callback(int error, const char *description) {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-int main(int, char **) {
+/**
+ * Laplace 引擎入口点.
+ *
+ * @param argc
+ * @param argv
+ * @return
+ */
+int main(int argc, char **argv) {
 
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
@@ -61,6 +68,13 @@ int main(int, char **) {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
+
+        ImGuiStyle& style     = ImGui::GetStyle();
+        style.WindowPadding   = ImVec2(100.0, 0);
+        style.FramePadding    = ImVec2(14.0, 2.0f);
+        style.ChildBorderSize = 0.0f;
+        style.FrameRounding   = 5.0f;
+        style.FrameBorderSize = 1.5f;
 
         // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
         if (show_demo_window)
@@ -119,5 +133,5 @@ int main(int, char **) {
     glfwDestroyWindow(window);
     glfwTerminate();
 
-    return 0;
+    return EXIT_SUCCESS;
 }

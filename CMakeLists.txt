@@ -27,6 +27,5 @@ file(GLOB APP_HEADERS CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
 file(GLOB APP_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 add_executable(${TARGET_NAME} ${APP_HEADERS} ${APP_SOURCES})
 
-# ---- link dependencies ----
-target_link_libraries(${TARGET_NAME} PUBLIC glfw)
-target_link_libraries(${TARGET_NAME} PUBLIC imgui)
+# ---- link 3rd-party dependencies ----
+target_link_libraries(${TARGET_NAME} PUBLIC glfw imgui)
